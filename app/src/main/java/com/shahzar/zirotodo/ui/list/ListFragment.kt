@@ -58,6 +58,10 @@ class ListFragment : BaseFragment() {
             NavMgr.instance.pushFragment(activity, CreateFragment.newInstance(it))
         }
 
+        listAdapter.onDoneCheck = { itemModel, checked ->
+            viewModel.taskDone(itemModel, checked)
+        }
+
         // Observe ViewModels
         viewModel.items.observe(viewLifecycleOwner, Observer { listAdapter.add(it) })
         viewModel.onitemDelete.observe(viewLifecycleOwner, Observer { showMessage(rootView, getString(

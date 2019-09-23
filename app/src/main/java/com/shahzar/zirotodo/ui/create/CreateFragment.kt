@@ -52,7 +52,7 @@ class CreateFragment : BaseFragment() {
         // Handle click
         rootView.submit.setOnClickListener {
             if (!isEditMode) {
-                val item = ItemModel(rootView.title.text.toString(), rootView.description.text.toString())
+                val item = ItemModel(title = rootView.title.text.toString(), description = rootView.description.text.toString())
                 viewModel.addItem(item)
             } else {
                 itemModel?.apply {

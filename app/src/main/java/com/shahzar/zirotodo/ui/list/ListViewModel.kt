@@ -21,4 +21,8 @@ class ListViewModel : ViewModel() {
         onitemDelete.value = item
     }
 
+    fun taskDone(item: ItemModel, done: Boolean) {
+        item.completed = done
+    }
+
 }

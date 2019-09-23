@@ -13,8 +13,9 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
 
     var onDeleteClick: ((ItemModel) -> Unit)? = null
     var onEditClick: ((ItemModel) -> Unit)? = null
+    var onDoneCheck: ((ItemModel, Boolean) -> Unit)? = null
 
-    private val mComparator = Comparator<ItemModel> { a, b -> a.title.compareTo(b.title) }
+    private val mComparator = Comparator<ItemModel> { a, b -> a.id.compareTo(b.id) }
 
     val sortedList: SortedList<ItemModel> = SortedList(ItemModel::class.java, object: SortedList.Callback<ItemModel>(){
         override fun areItemsTheSame(item1: ItemModel?, item2: ItemModel?): Boolean {
@@ -53,6 +54,7 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.description.text = sortedList.get(position).description
         holder.title.text = sortedList.get(position).title
+        holder.doneCheck.isChecked = sortedList.get(position).completed
     }
 
     override fun getItemCount(): Int {
@@ -94,6 +96,7 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
     inner class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
         val description = view.description
         val title = view.title
+        val doneCheck = view.doneCheck
 
         init {
             view.deleteBtn.setOnClickListener {
@@ -101,6 +104,9 @@ class ListAdapter() : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
             }
             view.editBtn.setOnClickListener {
                 onEditClick?.invoke(sortedList.get(adapterPosition))
+            }
+            view.doneCheck.setOnCheckedChangeListener { button, checked ->
+                onDoneCheck?.invoke(sortedList.get(adapterPosition), checked)
             }
         }
     }

@@ -4,6 +4,10 @@ import com.shahzar.zirotodo.data.model.ItemModel
 
 class DataManager() {
 
+    companion object {
+        val instance = DataManager()
+    }
+
     private var items : MutableList<ItemModel> = mutableListOf()
 
     init {

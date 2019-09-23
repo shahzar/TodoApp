@@ -13,7 +13,7 @@ class ListViewModel : ViewModel() {
     val items = MutableLiveData<List<ItemModel>>().apply { value = emptyList() }
 
     fun loadItems() : LiveData<List<ItemModel>> {
-        items.value = dataManager.getAllItems()
+        items.value = DataManager.instance.getAllItems()
         return items
     }
 

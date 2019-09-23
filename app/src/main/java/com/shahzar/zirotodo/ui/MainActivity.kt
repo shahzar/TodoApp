@@ -12,7 +12,10 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager.beginTransaction().replace(R.id.content_frag, ListFragment.newInstance()).commit()
+        supportFragmentManager
+            .beginTransaction()
+            .addToBackStack("")
+            .replace(R.id.content_frag, ListFragment.newInstance()).commit()
     }
 
 }

@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.shahzar.zirotodo.R
+import com.shahzar.zirotodo.ui.NavMgr
 import com.shahzar.zirotodo.ui.base.BaseFragment
+import com.shahzar.zirotodo.ui.create.CreateFragment
 import kotlinx.android.synthetic.main.list_fragment.*
 import kotlinx.android.synthetic.main.list_fragment.view.*
 
@@ -38,12 +40,18 @@ class ListFragment : BaseFragment() {
     private fun initView() {
         viewModel.loadItems()
 
+        // Setup Recycler View
         rootView.list.layoutManager = LinearLayoutManager(context)
         val listAdapter = ListAdapter()
         rootView.list.adapter = listAdapter
 
-        viewModel.items.observe(viewLifecycleOwner, Observer {listAdapter.add(it) })
+        // Handle click
+        rootView.fab.setOnClickListener {
+            NavMgr.instance.pushFragment(activity, CreateFragment.newInstance())
+        }
 
+        // Observe ViewModels
+        viewModel.items.observe(viewLifecycleOwner, Observer { listAdapter.add(it) })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

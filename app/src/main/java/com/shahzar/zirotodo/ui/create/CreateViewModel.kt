@@ -25,4 +25,14 @@ class CreateViewModel : ViewModel() {
         submit.value = true
     }
 
+    fun editItem(item: ItemModel) {
+        if (item.title == "") {
+            showError.value = "Please enter a title"
+            return
+        }
+
+        DataManager.instance.updateItems(item)
+        submit.value = true
+    }
+
 }

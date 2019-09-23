@@ -23,7 +23,15 @@ class CreateFragment : BaseFragment() {
     lateinit var rootView: View
 
     companion object {
+        var itemModel: ItemModel? = null
+        var isEditMode: Boolean = false
+
         fun newInstance() = CreateFragment()
+        fun newInstance(itemModel: ItemModel) : CreateFragment {
+            this.itemModel = itemModel
+            isEditMode = true
+            return CreateFragment()
+        }
 
     }
 
@@ -39,10 +47,20 @@ class CreateFragment : BaseFragment() {
 
     private fun initView() {
 
+        populateIfEditMode()
+
         // Handle click
         rootView.submit.setOnClickListener {
-            val item = ItemModel(rootView.title.text.toString(), rootView.description.text.toString())
-            viewModel.addItem(item)
+            if (!isEditMode) {
+                val item = ItemModel(rootView.title.text.toString(), rootView.description.text.toString())
+                viewModel.addItem(item)
+            } else {
+                itemModel?.apply {
+                    title = rootView.title.text.toString()
+                    description = rootView.description.text.toString()
+                    viewModel.editItem(this)
+                }
+            }
         }
 
         // Observe ViewModels
@@ -52,6 +70,13 @@ class CreateFragment : BaseFragment() {
 
         viewModel.showError.observe(viewLifecycleOwner, Observer { showError(rootView, it) })
 
+    }
+
+    private fun populateIfEditMode() {
+        if (!isEditMode || itemModel == null) return
+
+        rootView.title.setText(itemModel?.title)
+        rootView.description.setText(itemModel?.description)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

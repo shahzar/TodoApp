@@ -48,9 +48,14 @@ class ListFragment : BaseFragment() {
         rootView.fab.setOnClickListener {
             NavMgr.instance.pushFragment(activity, CreateFragment.newInstance())
         }
+
         listAdapter.onDeleteClick = {
             viewModel.deleteItem(it)
             listAdapter.remove(it)
+        }
+
+        listAdapter.onEditClick = {
+            NavMgr.instance.pushFragment(activity, CreateFragment.newInstance(it))
         }
 
         // Observe ViewModels

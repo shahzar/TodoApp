@@ -3,4 +3,5 @@
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
     <string name="label_submit">Submit</string>
+    <string name="msg_item_deleted">Item deleted</string>
 </resources>

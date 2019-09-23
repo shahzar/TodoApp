@@ -14,4 +14,8 @@ open class BaseFragment: Fragment() {
     fun showError(view: View, msg: String) {
         Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
     }
+
+    fun showMessage(view: View, msg: String) {
+        Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show()
+    }
 }

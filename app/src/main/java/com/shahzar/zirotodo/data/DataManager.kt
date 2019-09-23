@@ -35,4 +35,8 @@ class DataManager() {
         return items;
     }
 
+    fun removeItem(itemModel: ItemModel) {
+        items.remove(itemModel)
+    }
+
 }

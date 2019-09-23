@@ -24,7 +24,6 @@ class ListFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = ListFragment()
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -49,9 +48,15 @@ class ListFragment : BaseFragment() {
         rootView.fab.setOnClickListener {
             NavMgr.instance.pushFragment(activity, CreateFragment.newInstance())
         }
+        listAdapter.onDeleteClick = {
+            viewModel.deleteItem(it)
+            listAdapter.remove(it)
+        }
 
         // Observe ViewModels
         viewModel.items.observe(viewLifecycleOwner, Observer { listAdapter.add(it) })
+        viewModel.onitemDelete.observe(viewLifecycleOwner, Observer { showMessage(rootView, getString(
+                    R.string.msg_item_deleted) + " ${it.title}") })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

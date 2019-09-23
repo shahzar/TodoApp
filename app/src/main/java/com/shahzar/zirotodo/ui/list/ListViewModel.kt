@@ -8,13 +8,17 @@ import com.shahzar.zirotodo.data.model.ItemModel
 
 class ListViewModel : ViewModel() {
 
-    private val dataManager: DataManager = DataManager()
-
     val items = MutableLiveData<List<ItemModel>>().apply { value = emptyList() }
+    val onitemDelete = MutableLiveData<ItemModel>()
 
     fun loadItems() : LiveData<List<ItemModel>> {
         items.value = DataManager.instance.getAllItems()
         return items
+    }
+
+    fun deleteItem(item: ItemModel) {
+        DataManager.instance.removeItem(item)
+        onitemDelete.value = item
     }
 
 }

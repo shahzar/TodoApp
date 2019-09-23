@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="delete">@color/colorAccent</color>
+    <color name="edit">#0497FF</color>
     <color name="divider">#AAAAAA</color>
 </resources>

@@ -9,7 +9,10 @@ import com.shahzar.zirotodo.R
 import com.shahzar.zirotodo.data.model.ItemModel
 import kotlinx.android.synthetic.main.item_list.view.*
 
-class ListAdapter() : RecyclerView.Adapter<ViewHolder>() {
+class ListAdapter() : RecyclerView.Adapter<ListAdapter.ViewHolder>() {
+
+    var onDeleteClick: ((ItemModel) -> Unit)? = null
+    var onEditClick: ((ItemModel) -> Unit)? = null
 
     private val mComparator = Comparator<ItemModel> { a, b -> a.title.compareTo(b.title) }
 
@@ -87,9 +90,18 @@ class ListAdapter() : RecyclerView.Adapter<ViewHolder>() {
         sortedList.addAll(items)
         sortedList.endBatchedUpdates()
     }
-}
 
-class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
-    val description = view.description
-    val title = view.title
+    inner class ViewHolder (view: View): RecyclerView.ViewHolder(view) {
+        val description = view.description
+        val title = view.title
+
+        init {
+            view.deleteBtn.setOnClickListener {
+                onDeleteClick?.invoke(sortedList.get(adapterPosition))
+            }
+            view.editBtn.setOnClickListener {
+                onEditClick?.invoke(sortedList.get(adapterPosition))
+            }
+        }
+    }
 }

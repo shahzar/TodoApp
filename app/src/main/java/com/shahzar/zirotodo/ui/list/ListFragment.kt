@@ -69,8 +69,4 @@ class ListFragment : BaseFragment() {
         viewModel.onitemCompleted.observe(viewLifecycleOwner, Observer {  })
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
 }

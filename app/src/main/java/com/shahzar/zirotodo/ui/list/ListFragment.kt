@@ -66,6 +66,7 @@ class ListFragment : BaseFragment() {
         viewModel.items.observe(viewLifecycleOwner, Observer { listAdapter.add(it) })
         viewModel.onitemDelete.observe(viewLifecycleOwner, Observer { showMessage(rootView, getString(
                     R.string.msg_item_deleted) + " ${it.title}") })
+        viewModel.onitemCompleted.observe(viewLifecycleOwner, Observer {  })
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

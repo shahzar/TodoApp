@@ -26,7 +26,11 @@ class CreateFragment : BaseFragment() {
         var itemModel: ItemModel? = null
         var isEditMode: Boolean = false
 
-        fun newInstance() = CreateFragment()
+        fun newInstance(): CreateFragment {
+            this.itemModel = null
+            isEditMode = false
+            return CreateFragment()
+        }
         fun newInstance(itemModel: ItemModel) : CreateFragment {
             this.itemModel = itemModel
             isEditMode = true

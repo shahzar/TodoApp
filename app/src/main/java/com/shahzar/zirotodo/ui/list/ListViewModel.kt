@@ -10,6 +10,7 @@ class ListViewModel : ViewModel() {
 
     val items = MutableLiveData<List<ItemModel>>().apply { value = emptyList() }
     val onitemDelete = MutableLiveData<ItemModel>()
+    val onitemCompleted = MutableLiveData<ItemModel>()
 
     fun loadItems() : LiveData<List<ItemModel>> {
         items.value = DataManager.instance.getAllItems()
@@ -23,6 +24,8 @@ class ListViewModel : ViewModel() {
 
     fun taskDone(item: ItemModel, done: Boolean) {
         item.completed = done
+        DataManager.instance.updateItems(item)
+        onitemCompleted.value = item
     }
 
 }

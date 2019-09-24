@@ -12,10 +12,17 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager
-            .beginTransaction()
-            .addToBackStack("")
-            .replace(R.id.content_frag, ListFragment.newInstance()).commit()
+        NavMgr.instance.pushFragment(this, ListFragment.newInstance())
+    }
+
+    override fun onBackPressed() {
+
+        if (!NavMgr.instance.hasItemsInBackstack(this)) {
+            finish()
+            return
+        }
+
+        super.onBackPressed()
     }
 
 }

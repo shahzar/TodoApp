@@ -21,4 +21,17 @@ class NavMgr {
 
     }
 
+    fun pop(activity: FragmentActivity?) {
+        activity?.supportFragmentManager?.popBackStack()
+    }
+
+    fun hasItemsInBackstack(activity: FragmentActivity?) : Boolean{
+
+        activity?.let {
+            return it.supportFragmentManager.backStackEntryCount > 1
+        }
+
+        return false
+    }
+
 }

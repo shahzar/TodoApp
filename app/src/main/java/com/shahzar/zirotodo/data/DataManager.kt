@@ -3,12 +3,10 @@ package com.shahzar.zirotodo.data
 import com.shahzar.zirotodo.data.model.ItemModel
 import com.shahzar.zirotodo.data.repository.InMemoryRepository
 
-class DataManager() {
-
-    val repository = InMemoryRepository()
+class DataManager(val repository: InMemoryRepository) {
 
     companion object {
-        val instance = DataManager()
+        val instance = DataManager(InMemoryRepository())
     }
 
     fun addItems(itemModel: ItemModel) {

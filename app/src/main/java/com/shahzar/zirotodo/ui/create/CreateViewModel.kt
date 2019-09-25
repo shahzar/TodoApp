@@ -8,8 +8,6 @@ import com.shahzar.zirotodo.data.model.ItemModel
 
 class CreateViewModel : ViewModel() {
 
-    private val dataManager: DataManager = DataManager()
-
     val items = MutableLiveData<List<ItemModel>>()
     val submit = MutableLiveData<Boolean>()
     val showError = MutableLiveData<String>()

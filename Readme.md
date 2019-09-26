@@ -12,5 +12,5 @@
 - Storage: In-memory
 
 ### Build
-[Download APK](app/release/app-release.apk)
+[Download APK](https://github.com/shahzar/TodoApp/blob/master/app/release/app-release.apk)
 

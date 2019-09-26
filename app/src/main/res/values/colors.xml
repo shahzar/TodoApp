@@ -6,4 +6,5 @@
     <color name="delete">@color/colorAccent</color>
     <color name="edit">#0497FF</color>
     <color name="divider">#AAAAAA</color>
+    <color name="color_text_dark">#333333</color>
 </resources>

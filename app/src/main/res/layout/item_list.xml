@@ -25,6 +25,8 @@
         android:layout_marginStart="@dimen/margin_small"
         android:layout_marginTop="@dimen/margin_large"
         android:textSize="@dimen/font_large"
+        android:textColor="@color/color_text_dark"
+        android:textStyle="bold"
         tools:text="Title"/>
 
     <TextView
